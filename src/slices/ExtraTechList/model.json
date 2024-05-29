@@ -1,0 +1,49 @@
+{
+  "id": "extra_tech_list",
+  "type": "SharedSlice",
+  "name": "ExtraTechList",
+  "description": "ExtraTechList",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "extra_tech_list": {
+          "type": "Group",
+          "config": {
+            "label": "Extra Tech List",
+            "repeat": true,
+            "fields": {
+              "tech_field": {
+                "type": "Text",
+                "config": {
+                  "label": "Tech Field",
+                  "placeholder": ""
+                }
+              },
+              "tech_color": {
+                "type": "Color",
+                "config": {
+                  "label": "Tech Color",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
