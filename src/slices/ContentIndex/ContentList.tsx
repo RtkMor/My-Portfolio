@@ -132,23 +132,27 @@ export default function ContentList({
     });
   }, [contentImages]);
 
+  const handleItemClick = (url: any) => {
+    const link = url.url;
+    window.open(link, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div>
 
       <ul ref={component} className="grid border-b border-b-slate-100" onMouseLeave={onMouseLeave} >
 
         {items.map((item, index) => (
-        
+          
             <li
               key={index}
               onMouseEnter={() => onMouseEnter(index)}
               className="list-item opacity-0"
             >
-            <a
-              href={item.data.github_link.url}
-              target="_blank"
+            <div
+              onClick={() => handleItemClick(item.data.github_link)}
               rel="noopener noreferrer"
-              className="flex flex-col justify-between border-t border-t-slate-100 py-10  text-slate-200 md:flex-row"
+              className="flex flex-col justify-between border-t border-t-slate-100 py-10 text-slate-200 md:flex-row"
               aria-label={item.data.title || ""}
             >
               <div className="flex flex-col">
@@ -164,8 +168,9 @@ export default function ContentList({
               <span className="ml-auto flex items-center gap-2 text-xl font-medium md:ml-0">
                 {viewMoreText === "View Project" ? "View Project" : "Read More"} <MdArrowOutward />
               </span>
-            </a>
+            </div>
           </li>
+
         ))}
 
         {/* Hover element */}
