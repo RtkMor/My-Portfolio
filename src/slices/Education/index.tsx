@@ -72,14 +72,14 @@ const Education = ({ slice }: EducationProps): JSX.Element => {
       // List item animation
       gsap.utils.toArray(".list-item").forEach((item, index) => {
         gsap.from(
-          item,
+          item as HTMLElement,
           {
             opacity: 0,
             y: 50,
             duration: 1,
             ease: "power1.out",
             scrollTrigger: {
-              trigger: item,
+              trigger: item as HTMLElement,
               start: "top 90%",
               end: "top 75%",
               toggleActions: "play none reverse none",

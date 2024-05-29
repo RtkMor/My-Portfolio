@@ -40,6 +40,7 @@ const BlogPostIndex = async ({
       )}
       <ContentList
         items={items}
+        contentType={slice.primary.content_type}
         viewMoreText={slice.primary.view_more_text}
         fallbackItemImage={slice.primary.fallback_item_image}
       />

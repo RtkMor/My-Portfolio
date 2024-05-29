@@ -10,49 +10,51 @@ import { Content } from "@prismicio/client";
 gsap.registerPlugin(ScrollTrigger);
 
 type ContentListProps = {
-  items: Content.BlogPostDocument | Content.ProjectDocument;
+  items: Content.BlogPostDocument[] | Content.ProjectDocument[];
+  contentType: Content.ContentIndexSlice["primary"]["content_type"];
   fallbackItemImage: Content.ContentIndexSlice["primary"]["fallback_item_image"];
   viewMoreText: Content.ContentIndexSlice["primary"]["view_more_text"];
 };
 
 export default function ContentList({
   items,
+  contentType,
   fallbackItemImage,
   viewMoreText = "Read More",
 }: ContentListProps) {
 
   const component = useRef(null);
-  const itemsRef = useRef<Array<HTMLLIElement | null>>([]);
 
   const revealRef = useRef(null);
   const [currentItem, setCurrentItem] = useState<null | number>(null);
   const [hovering, setHovering] = useState(false);
   const lastMousePos = useRef({ x: 0, y: 0 });
 
+
   useEffect(() => {
     
     // Animate list-items in with a stagger
     let ctx = gsap.context(() => {
-      itemsRef.current.forEach((item) => {
+
+      gsap.utils.toArray(".list-item").forEach((item, index) => {
         gsap.fromTo(
-          item,
+          item as HTMLElement,
           {
             opacity: 0,
-            y: 20,
+            y: 50
           },
           {
             opacity: 1,
             y: 0,
-            duration: 1, // Shorter duration for smoother feel
-            ease: "power1.out", // Use power1.out for a smooth easing effect
-            stagger: 0.2, // Add a stagger effect for smoother entrance
+            duration: 1,
+            ease: "power1.out",
             scrollTrigger: {
-              trigger: item,
-              start: "top bottom-=100px",
-              end: "bottom center",
-              toggleActions: "play rverse play reverse",
+              trigger: item as HTMLElement,
+              start: "top 90%",
+              end: "top 75%",
+              toggleActions: "play none play reverse",
             },
-          },
+          }
         );
       });
 
@@ -131,23 +133,22 @@ export default function ContentList({
   }, [contentImages]);
 
   return (
-    <div ref={component}>
+    <div>
 
-      <ul className="grid border-b border-b-slate-100" onMouseLeave={onMouseLeave} >
+      <ul ref={component} className="grid border-b border-b-slate-100" onMouseLeave={onMouseLeave} >
 
         {items.map((item, index) => (
         
-          <li
-            key={index}
-            ref={(el) => (itemsRef.current[index] = el)}
-            onMouseEnter={() => onMouseEnter(index)}
-            className="list-item opacity-0"
-          >
+            <li
+              key={index}
+              onMouseEnter={() => onMouseEnter(index)}
+              className="list-item opacity-0"
+            >
             <a
               href={item.data.github_link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col justify-between border-t border-t-slate-100 py-10  text-slate-200 md:flex-row "
+              className="flex flex-col justify-between border-t border-t-slate-100 py-10  text-slate-200 md:flex-row"
               aria-label={item.data.title || ""}
             >
               <div className="flex flex-col">
