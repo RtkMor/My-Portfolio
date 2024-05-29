@@ -17,8 +17,8 @@ export type ExtraTechListProps = SliceComponentProps<Content.ExtraTechListSlice>
  * Component for "ExtraTechList" Slices.
  */
 const ExtraTechList = ({ slice }: ExtraTechListProps): JSX.Element => {
+
   const component = useRef(null);
-  const itemsRef = useRef([]);
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -68,26 +68,29 @@ const ExtraTechList = ({ slice }: ExtraTechListProps): JSX.Element => {
       );
 
       // Animate tech-list items
-      gsap.fromTo(
-        itemsRef.current,
-        {
-          opacity: 0,
-          y: 20,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power1.out",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: itemsRef.current,
-            start: "top 80%",
-            end: "top 60%",
-            toggleActions: "play none reverse none",
+      gsap.utils.toArray(".tech").forEach((item, index) => {
+        gsap.fromTo(
+          item as HTMLElement,
+          {
+            opacity: 0,
+            y: 20,
           },
-        }
-      );
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power1.out",
+            stagger: 0.2,
+            scrollTrigger: {
+              trigger: item as HTMLElement,
+              start: "top 80%",
+              end: "top 60%",
+              toggleActions: "play none reverse none",
+            },
+          }
+        );
+      })
+      
     }, component);
 
     return () => ctx.revert();
@@ -112,12 +115,11 @@ const ExtraTechList = ({ slice }: ExtraTechListProps): JSX.Element => {
           {slice.primary.extra_tech_list.map(({ tech_field, tech_color }, index) => (
             <div
               key={index}
-              className="p-5 text-3xl"
+              className="tech p-5 text-3xl"
               style={{
                 color: tech_color || "inherit",
                 border: tech_color ? `2px solid ${tech_color}` : "none",
               }}
-              ref={(el) => (itemsRef.current[index] = el)}
             >
               {tech_field}
             </div>
