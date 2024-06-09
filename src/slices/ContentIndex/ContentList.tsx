@@ -148,6 +148,7 @@ export default function ContentList({
               key={index}
               onMouseEnter={() => onMouseEnter(index)}
               className="list-item opacity-0"
+              style={{ cursor: 'pointer' }}
             >
             <div
               onClick={() => handleItemClick(item.data.github_link)}
