@@ -62,7 +62,7 @@ const Education = ({ slice }: EducationProps): JSX.Element => {
           scrollTrigger: {
             trigger: ".heading",
             start: "top 100%",
-            end: "top 80%",
+            end: "top 75%",
             scrub: 1,
             toggleActions: "play reverse play reverse",
           },
@@ -82,7 +82,7 @@ const Education = ({ slice }: EducationProps): JSX.Element => {
               trigger: item as HTMLElement,
               start: "top 90%",
               end: "top 75%",
-              toggleActions: "play none reverse none",
+              toggleActions: "play none play reverse",
             },
           }
         );

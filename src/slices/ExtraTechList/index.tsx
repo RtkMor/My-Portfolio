@@ -60,7 +60,7 @@ const ExtraTechList = ({ slice }: ExtraTechListProps): JSX.Element => {
           scrollTrigger: {
             trigger: ".heading",
             start: "top 100%",
-            end: "top 80%",
+            end: "top 75%",
             scrub: 1,
             toggleActions: "play reverse play reverse",
           },
@@ -73,19 +73,18 @@ const ExtraTechList = ({ slice }: ExtraTechListProps): JSX.Element => {
           item as HTMLElement,
           {
             opacity: 0,
-            y: 20,
+            y: 50,
           },
           {
             opacity: 1,
             y: 0,
             duration: 1,
             ease: "power1.out",
-            stagger: 0.2,
             scrollTrigger: {
               trigger: item as HTMLElement,
-              start: "top 80%",
-              end: "top 60%",
-              toggleActions: "play none reverse none",
+              start: "top 90%",
+              end: "top 75%",
+              toggleActions: "play none play reverse",
             },
           }
         );
