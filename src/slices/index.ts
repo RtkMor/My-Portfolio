@@ -10,4 +10,5 @@ export const components = {
   home_template: dynamic(() => import("./HomeTemplate")),
   tech_list: dynamic(() => import("./TechList")),
   text_block: dynamic(() => import("./TextBlock")),
+  work_experience: dynamic(() => import("./WorkExperience")),
 };

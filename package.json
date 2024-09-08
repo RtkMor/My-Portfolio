@@ -10,7 +10,7 @@
     "slicemachine": "start-slicemachine"
   },
   "dependencies": {
-    "@prismicio/client": "^7.5.0",
+    "@prismicio/client": "^7.8.1",
     "@prismicio/next": "^1.6.0",
     "@prismicio/react": "^2.8.0",
     "@react-three/drei": "^9.105.6",
@@ -26,7 +26,7 @@
     "three": "^0.164.1"
   },
   "devDependencies": {
-    "@slicemachine/adapter-next": "^0.3.41",
+    "@slicemachine/adapter-next": "^0.3.49",
     "@tailwindcss/typography": "^0.5.13",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -34,7 +34,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
-    "slice-machine-ui": "^2.2.0",
+    "slice-machine-ui": "^2.7.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

@@ -179,6 +179,7 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | WorkExperienceSlice
   | EducationSlice
   | ContentIndexSlice
   | ExtraTechListSlice
@@ -1025,6 +1026,108 @@ export type TextBlockSlice = prismic.SharedSlice<
   TextBlockSliceVariation
 >;
 
+/**
+ * Item in *WorkExperience → Default → Primary → Work Experience List*
+ */
+export interface WorkExperienceSliceDefaultPrimaryWorkExperienceListItem {
+  /**
+   * Name field in *WorkExperience → Default → Primary → Work Experience List*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_experience.default.primary.work_experience_list[].name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Date field in *WorkExperience → Default → Primary → Work Experience List*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_experience.default.primary.work_experience_list[].date
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  date: prismic.KeyTextField;
+
+  /**
+   * Location field in *WorkExperience → Default → Primary → Work Experience List*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_experience.default.primary.work_experience_list[].location
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  location: prismic.KeyTextField;
+
+  /**
+   * Description field in *WorkExperience → Default → Primary → Work Experience List*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_experience.default.primary.work_experience_list[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *WorkExperience → Default → Primary*
+ */
+export interface WorkExperienceSliceDefaultPrimary {
+  /**
+   * Heading field in *WorkExperience → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_experience.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Work Experience List field in *WorkExperience → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_experience.default.primary.work_experience_list[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  work_experience_list: prismic.GroupField<
+    Simplify<WorkExperienceSliceDefaultPrimaryWorkExperienceListItem>
+  >;
+}
+
+/**
+ * Default variation for WorkExperience Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WorkExperienceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<WorkExperienceSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *WorkExperience*
+ */
+type WorkExperienceSliceVariation = WorkExperienceSliceDefault;
+
+/**
+ * WorkExperience Shared Slice
+ *
+ * - **API ID**: `work_experience`
+ * - **Description**: WorkExperience
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WorkExperienceSlice = prismic.SharedSlice<
+  "work_experience",
+  WorkExperienceSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1081,6 +1184,11 @@ declare module "@prismicio/client" {
       TextBlockSlice,
       TextBlockSliceVariation,
       TextBlockSliceDefault,
+      WorkExperienceSlice,
+      WorkExperienceSliceDefaultPrimaryWorkExperienceListItem,
+      WorkExperienceSliceDefaultPrimary,
+      WorkExperienceSliceVariation,
+      WorkExperienceSliceDefault,
     };
   }
 }
