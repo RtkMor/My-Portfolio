@@ -18,8 +18,8 @@ export default function Button({
   label,
   showIcon = true,
   className,
-  target,
-  rel,
+  target = "_blank", // Default target to "_blank"
+  rel = "noopener noreferrer", // Default rel for security
 }: ButtonProps) {
   return (
     <PrismicNextLink
